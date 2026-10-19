@@ -1,0 +1,9 @@
+import Image from "next/image";
+
+export default function Header() {
+    return (
+        <div className="w-creen h-[10vh] bg-orange-200 flex flex-row items-center px-10">
+            <Image src="/OxxoLogo.png" width={100} height={0} alt="Ocso Logo" draggable={false}/>
+        </div>
+    )
+}

@@ -5,6 +5,7 @@ import { Location } from "@/entities";
 import SelectLocation from "./_components/Selectlocation";
 import { data } from "framer-motion/client";
 import LocationCard from "./_components/LocationCard";
+import FormNewLocation from "./_components/FormNewLocation";
 
 const LocationsPage = async ({searchParams}: {searchParams: { [key: string]: string | string[] | undefined}}) => {
     const userCookies = cookies()
@@ -32,6 +33,7 @@ const LocationsPage = async ({searchParams}: {searchParams: { [key: string]: str
                 <div className="w-8/12">
                     <LocationCard store={searchParams.store} />
                 </div>
+                <FormNewLocation/>
             </div>
         </div>)
 }

@@ -1,4 +1,3 @@
-import axios from "axios";
 import { Location } from "@/entities";
 import SelectLocation from "./_components/Selectlocation";
 import LocationCard from "./_components/LocationCard";
@@ -7,12 +6,16 @@ import DeleteLocationButton from "./_components/DeleteLocationButton";
 import { authHeaders } from "@/helpers/authHeaders";
 
 const LocationsPage = async ({searchParams}: {searchParams: { [key: string]: string | string[] | undefined}}) => {
-    let {data} = await axios.get<Location[]>("http://127.0.0.1:4000/locations" ,{
+    const response = await fetch("http://127.0.0.1:4000/locations" ,{
         headers: {
             ...authHeaders()
         },
+        next: {
+            tags: ["dashboard:locations"]
+        }
     },
     );
+    let data: Location[] = await response.json()
     data = [
     {
         locationId: 0,

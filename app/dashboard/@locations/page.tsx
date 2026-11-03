@@ -2,8 +2,10 @@ import { Location } from "@/entities";
 import SelectLocation from "./_components/Selectlocation";
 import LocationCard from "./_components/LocationCard";
 import FormNewLocation from "./_components/FormNewLocation";
+import FormUpdateLocation from "./_components/FormUpdateLocation";
 import DeleteLocationButton from "./_components/DeleteLocationButton";
 import { authHeaders } from "@/helpers/authHeaders";
+import UpdateLocation from "./_components/UpdateLocation";
 
 const LocationsPage = async ({searchParams}: {searchParams: { [key: string]: string | string[] | undefined}}) => {
     const response = await fetch("http://127.0.0.1:4000/locations" ,{
@@ -38,6 +40,9 @@ const LocationsPage = async ({searchParams}: {searchParams: { [key: string]: str
                 <FormNewLocation store={searchParams.store}/>
                 </div>
                 <DeleteLocationButton store={searchParams.store}/>
+                <UpdateLocation>
+                    <FormUpdateLocation store={searchParams.store} />
+                </UpdateLocation>
             </div>
         </div>)
 }

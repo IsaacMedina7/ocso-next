@@ -1,5 +1,5 @@
 
-const ManagerPage = () => {
+const ManagerPage = async () => {
     return null;
 }
 

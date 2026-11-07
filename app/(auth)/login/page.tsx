@@ -13,12 +13,18 @@ export default function LoginPage() {
         setSubmitting(true);
         e.preventDefault()
         const formData = new FormData(e.target);
-        let authData: any = {}
-        authData.userEmail = formData.get("userEmail");
-        authData.userPassword = formData.get("userPassword");
+
+            // Mapeo directo de los inputs del formulario
+            const authData = {
+                userEmail: formData.get("userEmail"),
+                userPassword: formData.get("userPassword"),
+            };
         try {
             const response = await fetch(`${API_URL}/auth/login`, {
                 method: "POST",
+                headers: {
+                "Content-Type": "application/json",
+            },
                 body: JSON.stringify(authData),
                 credentials: 'include',
             });

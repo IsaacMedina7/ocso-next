@@ -10,7 +10,7 @@ export default function SelectStore({ stores, defaultStore }: { stores: Location
         }
     }).filter((storeId) => storeId !== undefined)
     return (
-        <Select defaultSelectedKeys={defaultStore ? [defaultStore] : undefined} disabledKeys={disabledStores}>
+        <Select name="location" label="Tienda" defaultSelectedKeys={defaultStore ? [defaultStore] : undefined} disabledKeys={disabledStores}>
             {
                 stores.map((store: Location) => (
                     <SelectItem key={store.locationId}>

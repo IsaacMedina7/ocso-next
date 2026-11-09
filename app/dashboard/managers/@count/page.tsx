@@ -16,17 +16,17 @@ export default async function CountManagersPage() {
     const countNoStore = managers.filter((manager: Manager) => !manager.location).length;
     let max = 0;
     let salary = 0;
-    managers.forEach((manager: Manager)=>{
-        if (manager.managerSalary > max ) max = manager.managerSalary;
+    managers.forEach((manager: Manager) => {
+        if (manager.managerSalary > max) max = manager.managerSalary;
         salary += manager.managerSalary
     });
 
-    return(
+    return (
         <Card className="w-fit px-2 py-4 text-center">
             <h1> Hay {managers.length} manager{managers.length > 1 ? "s" : ""} </h1>
             <h1> Hay {countNoStore} sin tienda </h1>
             <h1> El salario máximo es {max} </h1>
-            <h1> El salario promedio es {(salary/managers.length)} </h1>
+            <h1> El salario promedio es {(salary / managers.length).toFixed(2)} </h1>
         </Card>
     );
 }

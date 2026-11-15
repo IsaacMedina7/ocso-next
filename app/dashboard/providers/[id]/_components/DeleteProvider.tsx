@@ -21,7 +21,7 @@ export default function DeleteProvider({ children }: { children: ReactNode }) {
                         <>
                             <ModalBody>
                                 {children}
-                                <Button> Cancelar </Button>
+                                <Button onPress={onClose}> Cancelar </Button>
                             </ModalBody>
                         </>
                     )}

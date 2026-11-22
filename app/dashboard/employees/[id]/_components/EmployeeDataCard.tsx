@@ -1,14 +1,22 @@
+"use client";
 import { Employee } from "@/entities";
 import { Image } from "@nextui-org/react";
 import Link from "next/link";
+import DeleteEmployee from "./DeleteEmployee";
+import CreateUser from "./CreateUser";
+import FormCreateUserEmployee from "./FormCreateUser";
+import { LuUser } from "react-icons/lu";
+import FormUpdateUser from "./FormUpdateUser";
 
 export default function EmployeeDataCard({ employee }: { employee: Employee }) {
     return (
         <div className="flex flex-row items-center gap-2 bg-white rounded-md flex-grow-0 h-fit px-4 py-2 m-2 border-2 border-orange-400">
-            <div className="text-xl">
-                <h1 className="font-bold"> {employee.employeeName + " " + employee.employeeLastName} </h1>
-                <h1> {employee.employeeEmail} </h1>
-                <h1> {employee.employeePhoneNumber} </h1>
+            <div className="text-xl flex flex-col h-full justify-between">
+                <div className="h-full py-10">
+                    <h1 className="font-bold"> {employee.employeeName + " " + employee.employeeLastName} </h1>
+                    <h1> {employee.employeeEmail} </h1>
+                    <h1> {employee.employeePhoneNumber} </h1>
+                </div>
                 <Link className="underline" href={{
                     pathname: `/dashboard`,
                     query: {
@@ -17,15 +25,20 @@ export default function EmployeeDataCard({ employee }: { employee: Employee }) {
                 }}>
                     <h1> {employee.location?.locationName} </h1>
                 </Link>
+                <div>
+                    <DeleteEmployee employeeId={employee.employeeId} />
+                </div>
             </div>
             <div className="h-full py-20 w-1 bg-zinc-300 mx-6" />
-            <Image src={employee.employeePhoto}
-                isZoomed
-                className="object-cover"
-                classNames={{
-                    img: "size-60"
-                }}
-            />
+            <CreateUser icon={<LuUser size="20" />} photo={employee?.employeePhoto}>
+                {
+                    !employee.user ? (
+                        <FormCreateUserEmployee employee={employee} />
+                    ) : (
+                        <FormUpdateUser user={employee.user} />
+                    )
+                }
+            </CreateUser>
         </div>
     )
 }

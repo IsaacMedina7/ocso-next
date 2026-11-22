@@ -1,12 +1,28 @@
 import { Card, CardHeader, Divider, CardBody } from "@nextui-org/react"
 import { Manager } from "@/entities"
 import Link from "next/link"
+import FormUpdateUser from "./FormUpdateUser"
+import { LuPlus } from "react-icons/lu"
+import FormCreateUserEmployee from "./FormCreateUser"
+import FormCreateUserManager from "./FormCreateUser"
+import ModalGeneric from "@/app/dashboard/_components/ModalGeneric"
 
 export default function ManagerCard({ manager }: { manager: Manager }) {
     return (
-        <Card className="mx-20 py-2 text-center">
-            <CardHeader>
-                <p className="w-full"> <b className="text-3xl">{manager.managerFullName}</b></p>
+        <Card className="mx-10 py-4 px-6 min-w-[500px] text-center">
+            <CardHeader className="flex flex-row items-center justify-between gap-12 px-4">
+                <p className="text-3xl font-bold">
+                    {manager.managerFullName}
+                </p>
+                {manager.user ? (
+                    <ModalGeneric icon={<LuPlus size="20" />}>
+                        <FormUpdateUser user={manager.user} />
+                    </ModalGeneric>
+                ) : (
+                    <ModalGeneric icon={<LuPlus size="20" />}>
+                        <FormCreateUserManager manager={manager} />
+                    </ModalGeneric>
+                )}
             </CardHeader>
             <Divider />
             <CardBody className="flex flex-row flex-grow-0 items-center gap-10 justify-center">
